@@ -27,16 +27,6 @@ jobs:
         run: chmod +x ./gradlew 
       - name: Build Jar
         run: ./gradlew shadowJar
-      - name: Upload Version File
-        run: |
-          ./gradlew writeVersionFile
-          echo "RELEASE_VERSION=$(cat build/version.txt)" >> $GITHUB_ENV
-        id: build
-      - name: Use Version Number
-        run: |
-          echo "Version number is ${{ env.RELEASE_VERSION }}"
-      - name: Build Jar
-        run: ./gradlew shadowJar
       - uses: "marvinpinto/action-automatic-releases@latest" 
         with: 
           repo_token: "${{ secrets.GITHUB_TOKEN }}" 
